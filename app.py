@@ -1,9 +1,8 @@
-# app.py
 import os, tempfile, io
-from flask import Flask, request, render_template, send_file, Response
+from flask import Flask, request, render_template, send_file, Response, send_from_directory
 from werkzeug.utils import secure_filename
 from parser_presupuesto import parse_pdf
-import xlsxwriter  # lo trae XlsxWriter
+import xlsxwriter  # para generar Excel liviano
 
 ALLOWED_EXT = {".pdf"}
 MAX_CONTENT_LENGTH = 100 * 1024 * 1024  # 100MB
@@ -15,6 +14,11 @@ COLUMNS = [
     'seccion','seccion_nombre','subseccion','subseccion_nombre','clave',
     'descripcion','unidad','cantidad','precio_unitario','total','titulo','fecha','archivo'
 ]
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path),
+                               'favicon.png', mimetype='image/png')
 
 def build_xlsx_bytes(rows):
     buf = io.BytesIO()
@@ -78,12 +82,6 @@ def convertir():
         app.logger.exception("Fallo en /convertir")
         return Response(f"Error interno procesando tus archivos: {e}", status=500)
 
-from flask import send_from_directory
-
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.path.join(app.root_path),
-                               'favicon.png', mimetype='image/png')
-
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=True)
+
