@@ -4,9 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Convertidor de Presupuestos de Obra</title>
+  <link rel="icon" type="image/png" href="/favicon.ico">
+  <meta name="theme-color" content="#6b6cfb">
+  <meta name="msapplication-TileColor" content="#6b6cfb">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#6b6cfb">
+
   <style>
     body {
-      font-family: "Segoe UI", Arial, sans-serif;
+      font-family: 'Segoe UI', Roboto, sans-serif;
       background-color: #f7f8ff;
       color: #333;
       margin: 0;
@@ -14,93 +19,80 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-height: 100vh;
-    }
-    header {
-      width: 100%;
-      background-color: #6b6cfb;
-      color: white;
-      text-align: center;
-      padding: 1.5rem 0;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    header h1 {
-      margin: 0;
-      font-size: 1.8rem;
-      font-weight: 600;
-    }
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
-      padding: 2rem;
-      text-align: center;
+      height: 100vh;
     }
+
     .card {
-      background: white;
-      padding: 2rem 3rem;
-      border-radius: 14px;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-      max-width: 500px;
-      width: 100%;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      padding: 40px;
+      text-align: center;
+      width: 90%;
+      max-width: 480px;
     }
-    h2 {
+
+    h1 {
       color: #6b6cfb;
-      margin-bottom: 1rem;
-      font-weight: 600;
+      margin-bottom: 15px;
     }
+
+    p {
+      color: #666;
+      margin-bottom: 25px;
+      font-size: 15px;
+    }
+
     input[type="file"] {
-      border: 1px solid #ccc;
-      padding: 0.6rem;
+      border: 2px dashed #6b6cfb;
+      border-radius: 10px;
+      padding: 20px;
       width: 100%;
-      border-radius: 8px;
-      margin-bottom: 1.2rem;
       cursor: pointer;
+      color: #555;
+      margin-bottom: 25px;
     }
+
     button {
       background-color: #6b6cfb;
       color: white;
       border: none;
-      padding: 0.8rem 1.4rem;
+      padding: 12px 24px;
       border-radius: 8px;
-      font-size: 1rem;
+      font-size: 16px;
       cursor: pointer;
-      transition: background 0.2s ease;
-      width: 100%;
+      transition: background 0.3s;
     }
+
     button:hover {
-      background-color: #4f50d4;
+      background-color: #5456d1;
     }
+
     footer {
-      width: 100%;
-      text-align: center;
-      font-size: 0.85rem;
-      color: #777;
-      margin-bottom: 1rem;
+      margin-top: 20px;
+      font-size: 13px;
+      color: #999;
+    }
+
+    img.logo {
+      width: 80px;
+      margin-bottom: 10px;
     }
   </style>
 </head>
+
 <body>
-  <header>
+  <div class="card">
+    <img src="/favicon.ico" class="logo" alt="Logo Numit">
     <h1>Convertidor de Presupuestos de Obra</h1>
-    <p style="font-size: 0.95rem; margin: 0;">Taller de Construcción | Numit Consultoría Empresarial</p>
-  </header>
-
-  <main>
-    <div class="card">
-      <h2>Sube tus archivos PDF</h2>
-      <p>Convierte presupuestos de obra a un formato Excel compatible con tu sistema financiero.</p>
-      <form method="post" action="/convertir" enctype="multipart/form-data">
-        <input type="file" name="files" accept=".pdf" multiple required>
-        <button type="submit">Convertir y descargar Excel</button>
-      </form>
-    </div>
-  </main>
-
-  <footer>
-    © 2025 Numit Consultoría Empresarial — Todos los derechos reservados.
-  </footer>
+    <p>Sube uno o varios archivos PDF para convertirlos en una base de datos Excel.</p>
+    <form action="/convertir" method="post" enctype="multipart/form-data">
+      <input type="file" name="files" accept=".pdf" multiple required>
+      <button type="submit">Convertir a Excel</button>
+    </form>
+  </div>
+  <footer>Desarrollado por <strong>NUMIT Consultoría Empresarial</strong></footer>
 </body>
 </html>
+
