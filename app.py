@@ -78,5 +78,12 @@ def convertir():
         app.logger.exception("Fallo en /convertir")
         return Response(f"Error interno procesando tus archivos: {e}", status=500)
 
+from flask import send_from_directory
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path),
+                               'favicon.png', mimetype='image/png')
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=True)
